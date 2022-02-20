@@ -44,13 +44,13 @@ RUN set -ex \
     && if [ -z "$STABLE"]; then curl -k -L https://releases.domoticz.com/releases/beta/${archive_file} --output domoticz.tgz; else curl -k -L https://releases.domoticz.com/releases/release/${archive_file} --output domoticz.tgz; fi \
     && tar xfz domoticz.tgz \
     && rm domoticz.tgz \
-    && mkdir -p /opt/domoticz/userdata \
+    && mkdir -p /opt/domoticz_mg/userdata \
     && rm -rf /var/lib/apt/lists/* \
     && ln -s /usr/bin/pip3 /usr/bin/pip \
     && pip3 install setuptools requests \
 	&& pip3 install fabric \
 
-VOLUME /opt/domoticz/userdata
+VOLUME /opt/domoticz_mg/userdata
 
 EXPOSE 8080
 EXPOSE 6144
