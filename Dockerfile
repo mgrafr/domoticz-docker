@@ -12,13 +12,13 @@ LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.vcs-url="https://github.com/domoticz/domoticz" \
       org.label-schema.url="https://domoticz.com/" \
       org.label-schema.vendor="Domoticz" \
-      org.label-schema.name="Domoticz" \
+      org.label-schema.name="Domoticz_mg" \
       org.label-schema.description="Domoticz open source Home Automation system" \
       org.label-schema.license="GPLv3" \
-      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8080:8080 -d domoticz/domoticz" \
+      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz_mg/domoticz" \
       maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
 
-WORKDIR /opt/domoticz
+WORKDIR /opt/domoticz_mg
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -47,7 +47,8 @@ RUN set -ex \
     && mkdir -p /opt/domoticz/userdata \
     && rm -rf /var/lib/apt/lists/* \
     && ln -s /usr/bin/pip3 /usr/bin/pip \
-    && pip3 install setuptools requests
+    && pip3 install setuptools requests \
+	&& pip3 install fabric \
 
 VOLUME /opt/domoticz/userdata
 
@@ -62,11 +63,11 @@ ENV SSL_PORT=443
 ENV EXTRA_CMD_ARG=
 
 # timezone env with default
-ENV TZ=Europe/Amsterdam
+ENV TZ=Europe/Paris
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
     && ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["/opt/domoticz/domoticz"]
+CMD ["/opt/domoticz_mg/domoticz"]
