@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 ARG APP_VERSION
 ARG APP_HASH
@@ -11,7 +11,27 @@ LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.vcs-ref=$APP_HASH \
       org.label-schema.vcs-url="https://github.com/mgrafr/domoticz" \
       org.label-schema.url="https://domoticz.com/" \
-      org.label-schema.vendor="Domoticz" \
+      org.label-schema.vendor="Domo" \
+      org.label-schema.name="domoticz" \
+      org.label-schema.description="Domoticz open source Home Automation system>
+      org.label-schema.license="GPLv3" \
+      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:>
+      maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
+
+FROM debian:bullseye-slim
+
+ARG APP_VERSION
+ARG APP_HASH
+ARG BUILD_DATE
+# If stable argument is passed it will download stable instead of beta
+ARG STABLE
+
+LABEL org.label-schema.version=$APP_VERSION \
+      org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.vcs-ref=$APP_HASH \
+      org.label-schema.vcs-url="https://github.com/mgrafr/domoticz" \
+      org.label-schema.url="https://domoticz.com/" \
+      org.label-schema.vendor="Domo" \
       org.label-schema.name="domoticz" \
       org.label-schema.description="Domoticz open source Home Automation system" \
       org.label-schema.license="GPLv3" \
@@ -31,8 +51,9 @@ RUN set -ex \
         libudev-dev \
         libusb-0.1-4 \
         libsqlite3-0 \
-        curl libcurl4 libcurl4-gnutls-dev \
-        libpython3.7-dev \
+        curl libcurl4-gnutls-dev \
+        python3.9 \
+        libpython3.9-dev \
         python3 \
         python3-pip \
     && OS="$(uname -s | sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/')" \
@@ -46,9 +67,8 @@ RUN set -ex \
     && rm domoticz.tgz \
     && mkdir -p /home/domoticz/userdata \
     && rm -rf /var/lib/apt/lists/* \
-    && ln -s /usr/bin/pip3 /usr/bin/pip \
-    && pip3 install setuptools requests \
-	&& pip3 install fabric \
+    && pip3 install  requests \
+    && pip3 install fabric2
 
 VOLUME /home/domoticz/userdata
 
@@ -71,3 +91,5 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["/home/domoticz/domoticz"]
+
+
