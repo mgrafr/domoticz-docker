@@ -11,7 +11,7 @@ LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.vcs-ref=$APP_HASH \
       org.label-schema.vcs-url="https://github.com/mgrafr/domoticz" \
       org.label-schema.url="https://domoticz.com/" \
-      org.label-schema.vendor="Domo" \
+      org.label-schema.vendor="Domotic" \
       org.label-schema.name="domoticz" \
       org.label-schema.description="Domoticz open source Home Automation system>
       org.label-schema.license="GPLv3" \
@@ -69,8 +69,9 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
     && pip3 install fabric2 \
-	&& pip3 install python-periphery
-	
+	&& pip3 install python-periphery \
+	&& curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
+	&& apt-get install -y nodejs
 
 VOLUME /home/domoticz/userdata
 
