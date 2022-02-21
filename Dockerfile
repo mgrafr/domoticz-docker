@@ -68,7 +68,9 @@ RUN set -ex \
     && mkdir -p /home/domoticz/userdata \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
-    && pip3 install fabric2
+    && pip3 install fabric2 \
+	&& pip3 install python-periphery
+	
 
 VOLUME /home/domoticz/userdata
 
