@@ -9,16 +9,16 @@ ARG STABLE
 LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$APP_HASH \
-      org.label-schema.vcs-url="https://github.com/mgrafr/domoticz_mg" \
+      org.label-schema.vcs-url="https://github.com/mgrafr/domoticz" \
       org.label-schema.url="https://domoticz.com/" \
       org.label-schema.vendor="Domoticz" \
-      org.label-schema.name="Domoticz_mg" \
+      org.label-schema.name="domoticz" \
       org.label-schema.description="Domoticz open source Home Automation system" \
       org.label-schema.license="GPLv3" \
-      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz_mg/plugins -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz_mg" \
+      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz" \
       maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
 
-WORKDIR /opt/domoticz_mg
+WORKDIR /home/domoticz
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -44,13 +44,13 @@ RUN set -ex \
     && if [ -z "$STABLE"]; then curl -k -L https://releases.domoticz.com/releases/beta/${archive_file} --output domoticz.tgz; else curl -k -L https://releases.domoticz.com/releases/release/${archive_file} --output domoticz.tgz; fi \
     && tar xfz domoticz.tgz \
     && rm domoticz.tgz \
-    && mkdir -p /opt/domoticz_mg/userdata \
+    && mkdir -p /home/domoticz/userdata \
     && rm -rf /var/lib/apt/lists/* \
     && ln -s /usr/bin/pip3 /usr/bin/pip \
     && pip3 install setuptools requests \
 	&& pip3 install fabric \
 
-VOLUME /opt/domoticz_mg/userdata
+VOLUME /home/domoticz/userdata
 
 EXPOSE 8080
 EXPOSE 6144
@@ -70,4 +70,4 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
     && ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["/opt/domoticz_mg/domoticz"]
+CMD ["/home/domoticz/domoticz"]
