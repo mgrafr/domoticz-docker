@@ -1,0 +1,24 @@
+
+version: '3.3'
+
+services:
+  domoticz:
+    image: domo-node/dz
+    container_name: domo-node
+    restart: unless-stopped
+    # Pass devices to container
+    devices:
+    # cle zwave
+    - "/dev/serial/by-id/usb-0658_0200-if00:/dev/ttyACM0"
+    ports:
+      - "8086:8080"
+    volumes:
+      - ./config:/home/domoticz/userdata
+      - ./scripts:/home/domoticz/scripts
+      - ./bash:/user/bin/bash
+      - ./www/modules_lua:/home/domoticz/www/modules_lua
+      - ./log:/home/michel
+    environment:
+      - TZ=Europe/Paris
+      - LOG_PATH=/home/domoticz/userdata/domoticz.log
+      - WEBROOT=domoticz
