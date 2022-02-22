@@ -72,6 +72,9 @@ RUN set -ex \
 	&& pip3 install python-periphery \
 	&& curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
 	&& apt-get install -y nodejs
+	&& npm install lgtv \
+    && npm install superagent \
+	&& cp node_modules/lgtv/index.js /home/domoticz/node_modules/lgtv
 
 VOLUME /home/domoticz/userdata
 
