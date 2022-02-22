@@ -9,27 +9,7 @@ ARG STABLE
 LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$APP_HASH \
-      org.label-schema.vcs-url="https://github.com/mgrafr/domoticz" \
-      org.label-schema.url="https://domoticz.com/" \
-      org.label-schema.vendor="Domotic" \
-      org.label-schema.name="domoticz" \
-      org.label-schema.description="Domoticz open source Home Automation system>
-      org.label-schema.license="GPLv3" \
-      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:>
-      maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
-
-FROM debian:bullseye-slim
-
-ARG APP_VERSION
-ARG APP_HASH
-ARG BUILD_DATE
-# If stable argument is passed it will download stable instead of beta
-ARG STABLE
-
-LABEL org.label-schema.version=$APP_VERSION \
-      org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.vcs-ref=$APP_HASH \
-      org.label-schema.vcs-url="https://github.com/mgrafr/domoticz" \
+      org.label-schema.vcs-url="https://github.com/mgrafr/domoticz-docker" \
       org.label-schema.url="https://domoticz.com/" \
       org.label-schema.vendor="Domo" \
       org.label-schema.name="domoticz" \
