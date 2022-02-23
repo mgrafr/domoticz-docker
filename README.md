@@ -1,6 +1,6 @@
 
 
-Domoticz image
+Domoticz image Docker
 ======
 
 Domoticz - http://www.domoticz.com/
