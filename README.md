@@ -13,8 +13,8 @@ Dockerfile  with
 - Node.js
 - modules node : lgtv , superagent
 
-| Linux 64 bit |
-infos en français : domo-site.fr
+| Linux 64 bit |<br>
+infos en français : domo-site.fr<br>
 Repository domoticz/domoticz: https://hub.docker.com/repository/docker/domoticz/domoticz
 
 Domoticz is a Home Automation System that lets you monitor and configure various devices like: Lights, Switches, various sensors/meters like Temperature, Rain, Wind, UV, Electra, Gas, Water and much more. Notifications/Alerts can be sent to any mobile device
