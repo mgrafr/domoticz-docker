@@ -51,11 +51,11 @@ RUN set -ex \
     && pip3 install fabric2 \
 	&& pip3 install python-periphery \
 	&& curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
-	&& apt-get install -y nodejs \
+	&& apt-get install nodejs -yq \
+	&& apt-get clean -y \
 	&& npm install lgtv \
     && npm install superagent 
 	 
-COPY node_modules/lgtv/index.js /home/domoticz/node_modules/lgtv
 VOLUME /home/domoticz/userdata
 
 EXPOSE 8080
