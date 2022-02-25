@@ -15,7 +15,7 @@ LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.name="domoticz" \
       org.label-schema.description="Domoticz open source Home Automation system" \
       org.label-schema.license="GPLv3" \
-      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8080:8080 -d domoticz/domoticz" \
+      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz" \
       maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
 
 WORKDIR /opt/domoticz
@@ -58,13 +58,13 @@ RUN set -ex \
 
 VOLUME /opt/domoticz/userdata
 
-EXPOSE 8086
+EXPOSE 8080
 EXPOSE 6144
 EXPOSE 443
 
 ENV LOG_PATH=
 ENV DATABASE_PATH=
-ENV WWW_PORT=8086
+ENV WWW_PORT=8080
 ENV SSL_PORT=443
 ENV EXTRA_CMD_ARG=
 
