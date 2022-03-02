@@ -15,7 +15,7 @@ LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.name="domoticz" \
       org.label-schema.description="Domoticz open source Home Automation system" \
       org.label-schema.license="GPLv3" \
-      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins ./scripts/dzVents:/opt/domoticz/scripts  -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz" \
+      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz" \
       maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
 
 WORKDIR /opt/domoticz
@@ -45,11 +45,10 @@ RUN set -ex \
     && if [ -z "$STABLE"]; then curl -k -L https://releases.domoticz.com/releases/beta/${archive_file} --output domoticz.tgz; else curl -k -L https://releases.domoticz.com/releases/release/${archive_file} --output domoticz.tgz; fi \
     && tar xfz domoticz.tgz \
     && rm domoticz.tgz \
-    && mkdir -p /home/domoticz/userdata \
+    && mkdir -p /opt/domoticz/userdata \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
     && pip3 install fabric2 \
-    && pip3 install python-periphery \
     && curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
     && apt-get install nodejs -yq \
     && apt-get clean -y \
