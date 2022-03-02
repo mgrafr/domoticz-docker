@@ -15,7 +15,7 @@ LABEL org.label-schema.version=$APP_VERSION \
       org.label-schema.name="domoticz" \
       org.label-schema.description="Domoticz open source Home Automation system" \
       org.label-schema.license="GPLv3" \
-      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz" \
+      org.label-schema.docker.cmd="docker run -v ./config:/config -v ./plugins:/opt/domoticz/plugins ./scripts/dzVents:/opt/domoticz/scripts  -e DATABASE_PATH=/config/domoticz.db -p 8086:8080 -d domoticz/domoticz" \
       maintainer="Domoticz Docker Maintainers <info@domoticz.com>"
 
 WORKDIR /opt/domoticz
@@ -57,7 +57,7 @@ RUN set -ex \
     && npm install superagent
 
 VOLUME /opt/domoticz/userdata
-
+copy lgtv/* node_modules/lgtv/
 EXPOSE 8080
 EXPOSE 6144
 EXPOSE 443
