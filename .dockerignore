@@ -5,6 +5,7 @@ npm-debug.log
 License.txt
 docker-compose.yml
 README.md
+dockerignore.txt
 *.orig
 msbuild
 *.db
