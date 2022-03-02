@@ -4,6 +4,7 @@ npm-debug.log
 License.txt
 docker-compose.yml
 README.md
+dockerignore.txt
 ************************************************************
 ******ENLEVER DU FICHIER .dockerignore de domoticz-docker***
 ************************************************************
