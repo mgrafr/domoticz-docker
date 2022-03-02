@@ -3,8 +3,10 @@ version: '3.3'
 
 services:
   domoticz:
-    image: domo-node/dz
-    container_name: domo-node
+    #nom image
+    image: domoticz-plus
+    #nom conteneur
+    container_name: domotic
     restart: unless-stopped
     # Pass devices to container
     devices:
@@ -13,12 +15,12 @@ services:
     ports:
       - "8086:8080"
     volumes:
-      - ./config:/home/domoticz/userdata
-      - ./scripts:/home/domoticz/scripts
+      - ./config:/opt/domoticz/userdata
+      - ./scripts:/opt/domoticz/scripts
       - ./bash:/user/bin/bash
       - ./www/modules_lua:/home/domoticz/www/modules_lua
       - ./log:/home/michel
     environment:
       - TZ=Europe/Paris
-      - LOG_PATH=/home/domoticz/userdata/domoticz.log
+      - LOG_PATH=/opt/domoticz/userdata/domoticz.log
       - WEBROOT=domoticz
