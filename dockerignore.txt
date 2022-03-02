@@ -1,12 +1,9 @@
-******AJOUTER AU FICHIER .dockerignore de domoticz-docker***
-************************************************************
+******AJOUTER AU FICHIER .dockerignore
+***************************************
 npm-debug.log
 License.txt
 docker-compose.yml
 README.md
 dockerignore.txt
-************************************************************
-******ENLEVER DU FICHIER .dockerignore de domoticz-docker***
-************************************************************
-/scripts/dzVents/generated_scripts/
-/scripts/dzVents/scripts/
+
+ET AURES FICHIERS SI NECESSAIRE
