@@ -46,17 +46,19 @@ RUN set -ex \
     && tar xfz domoticz.tgz \
     && rm domoticz.tgz \
     && mkdir -p /opt/domoticz/userdata \
-    && rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
     && pip3 install fabric2 \
     && curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
     && apt-get install nodejs -yq \
     && apt-get clean -y \
     && npm install lgtv \
-    && npm install superagent
+    && npm install superagent 
+	
 
 VOLUME /opt/domoticz/userdata
-copy lgtv/* node_modules/lgtv/
+
+COPY lgtv/* node_modules/lgtv/
 EXPOSE 8080
 EXPOSE 6144
 EXPOSE 443
@@ -69,7 +71,6 @@ ENV EXTRA_CMD_ARG=
 
 # timezone env with default
 ENV TZ=Europe/Paris
-
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
     && ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
