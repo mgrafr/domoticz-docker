@@ -46,7 +46,7 @@ RUN set -ex \
     && tar xfz domoticz.tgz \
     && rm domoticz.tgz \
     && mkdir -p /opt/domoticz/userdata \
-	&& rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
     && pip3 install fabric2 \
     && curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
@@ -57,7 +57,7 @@ RUN set -ex \
 	
 
 VOLUME /opt/domoticz/userdata
-
+COPY domoticz.conf domoticz.conf
 COPY lgtv/* node_modules/lgtv/
 EXPOSE 8080
 EXPOSE 6144
