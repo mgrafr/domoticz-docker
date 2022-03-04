@@ -1,9 +1,0 @@
-******AJOUTER AU FICHIER .dockerignore
-***************************************
-npm-debug.log
-License.txt
-docker-compose.yml
-README.md
-dockerignore.txt
-
-ET AURES FICHIERS SI NECESSAIRE
