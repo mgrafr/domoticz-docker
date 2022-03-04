@@ -57,7 +57,6 @@ RUN set -ex \
 	
 
 VOLUME /opt/domoticz/userdata
-COPY domoticz.conf domoticz.conf
 COPY lgtv/* node_modules/lgtv/
 EXPOSE 8080
 EXPOSE 6144
