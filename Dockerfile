@@ -49,6 +49,7 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
     && pip3 install fabric2 \
+    && pip3 install fabric \
     && curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
     && apt-get install nodejs -yq \
     && apt-get clean -y \
