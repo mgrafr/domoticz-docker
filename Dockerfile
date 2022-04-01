@@ -48,6 +48,7 @@ RUN set -ex \
     && mkdir -p /opt/domoticz/userdata \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install  requests \
+    && pip3 install paho-mqtt \
     && pip3 install fabric2 \
     && pip3 install fabric \
     && curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
