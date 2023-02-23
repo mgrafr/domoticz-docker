@@ -51,7 +51,9 @@ RUN set -ex \
     && pip3 install paho-mqtt \
     && pip3 install fabric2 \
     && pip3 install fabric \
-    && curl -fsSL https://deb.nodesource.com/setup_17.x | bash - \
+    && pip3 install pyserial \
+    && pip3 install python-periphery \
+    && curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
     && apt-get install nodejs -yq \
     && apt-get clean -y \
     && npm install lgtv \
