@@ -26,6 +26,7 @@ RUN set -ex \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
         tzdata \
+	wget \
         unzip \
         git \
         libudev-dev \
