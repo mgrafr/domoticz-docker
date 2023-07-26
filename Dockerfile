@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 ARG APP_VERSION
 ARG APP_HASH
@@ -33,9 +33,8 @@ RUN set -ex \
         libusb-0.1-4 \
         libsqlite3-0 \
         curl libcurl4-gnutls-dev \
-        python3.9 \
-        libpython3.9-dev \
-        python3 \
+        python3.11 \
+        libpython3.11-dev \
         python3-pip \
     && OS="$(uname -s | sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/')" \
     && MACH=$(uname -m) \
@@ -54,8 +53,8 @@ RUN set -ex \
     && pip3 install fabric \
     && pip3 install pyserial \
     && pip3 install python-periphery \
-    && curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
-    && apt-get install nodejs -yq \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
     && apt-get clean -y \
     && npm install lgtv \
     && npm install superagent 
