@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:bulleseye-slim
 
 ARG APP_VERSION
 ARG APP_HASH
@@ -33,9 +33,12 @@ RUN set -ex \
         libusb-0.1-4 \
         libsqlite3-0 \
         curl libcurl4-gnutls-dev \
-        python3.11 \
-        libpython3.11-dev \
+        # python3.11 \ # pour debian 12
+        # libpython3.11-dev \
+	python3.9 \ # pour debian 11
+        libpython3.9-dev \
         python3-pip \
+    # && rm -rf /usr/lib/python3.11/EXTERNALLY-MANAGED \	#pour debian 12 
     && OS="$(uname -s | sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/')" \
     && MACH=$(uname -m) \
     && if [ ${MACH} = "armv6l" ]; then MACH = "armv7l"; fi \
